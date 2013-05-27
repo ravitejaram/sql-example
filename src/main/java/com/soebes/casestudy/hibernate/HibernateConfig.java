@@ -50,7 +50,7 @@ public class HibernateConfig {
         LOGGER.debug(
                 "\n"
                 +	CONNECTION_URL + " = " + bean.getUrl() + "\n"
-                +	CONNECTION_PASSWORD + " = ;-) ;-)" + "\n"
+                +	CONNECTION_PASSWORD + bean.getPassword() + "\n"
                 +	CONNECTION_USERNAME + " = " + bean.getUsername() + "\n"
                 +	CONNECTION_DRIVER_CLASS + " = " + bean.getDriverclass() + "\n"
                 +	CONNECTION_DIALECT + " = " + bean.getDialect() + "\n"

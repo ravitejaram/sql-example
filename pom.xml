@@ -22,7 +22,7 @@
     <database.root.password></database.root.password>
 
     <database.user>blog</database.user>
-    <database.password></database.password>
+    <database.password>blog</database.password>
 
     <database.database>blog</database.database>
   </properties>

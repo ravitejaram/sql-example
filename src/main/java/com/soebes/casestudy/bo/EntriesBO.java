@@ -1,5 +1,7 @@
 package com.soebes.casestudy.bo;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -9,6 +11,8 @@ public class EntriesBO extends BaseBO {
     
     private String title;
     private String body;
+    
+    private Timestamp timestamp;
 
     public String getTitle() {
         return title;
@@ -25,6 +29,14 @@ public class EntriesBO extends BaseBO {
     public void setBody(String body) {
         this.body = body;
     }
-    
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
 
 }

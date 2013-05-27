@@ -1,6 +1,3 @@
-/**
- * (c) 2008, 2009 T-Mobile Deutschland GmbH
- */
 package com.soebes.casestudy.dao;
 
 import java.io.Serializable;

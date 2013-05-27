@@ -1,6 +1,3 @@
-/**
- * (c) 2008, 2009 T-Mobile Deutschland GmbH
- */
 package com.soebes.casestudy.dao;
 
 import java.io.Serializable;
@@ -34,9 +31,6 @@ public class HibernateDAO<T extends BaseBO, ID extends Serializable>
         persistentClass = c;
     }
 
-    /* (non-Javadoc)
-     * @see de.tmobile.cwb.soa.dao.IGenericDAO#get(java.io.Serializable)
-     */
     @SuppressWarnings("unchecked")
     public T get(ID id) {
         HibernateUtil.beginTransaction();
@@ -45,9 +39,6 @@ public class HibernateDAO<T extends BaseBO, ID extends Serializable>
         return result;
     }
 
-    /* (non-Javadoc)
-     * @see de.tmobile.cwb.soa.dao.IGenericDAO#getByExample(java.lang.Object, java.lang.String[])
-     */
     @SuppressWarnings("unchecked")
     public List<T> getByExample(T exampleInstance, String[] excludeProperty) {
         HibernateUtil.beginTransaction();
@@ -81,16 +72,10 @@ public class HibernateDAO<T extends BaseBO, ID extends Serializable>
         return result;
     }
 
-    /* (non-Javadoc)
-     * @see de.tmobile.cwb.soa.dao.IGenericDAO#get()
-     */
     public List<T> get() {
         return findAll(0);
     }
 
-    /* (non-Javadoc)
-     * @see de.tmobile.cwb.soa.dao.IGenericDAO#save(java.lang.Object)
-     */
     public T save(T entity) {
         HibernateUtil.beginTransaction();
         HibernateUtil.getSession().saveOrUpdate(entity);
@@ -101,26 +86,17 @@ public class HibernateDAO<T extends BaseBO, ID extends Serializable>
         return entity;
     }
 
-    /* (non-Javadoc)
-     * @see de.tmobile.cwb.soa.dao.IGenericDAO#saveWithoutTransaction(java.lang.Object)
-     */
     public T saveWithoutTransaction(T item) {
         HibernateUtil.getSession().saveOrUpdate(item);
         return item;
     }
 
-    /* (non-Javadoc)
-     * @see de.tmobile.cwb.soa.dao.IGenericDAO#remove(java.lang.Object)
-     */
     public void remove(T entity) {
         HibernateUtil.beginTransaction();
         HibernateUtil.getSession().delete(entity);
         HibernateUtil.commitTransaction();
     }
 
-    /* (non-Javadoc)
-     * @see de.tmobile.cwb.soa.dao.IGenericDAO#remove(java.io.Serializable)
-     */
     public void remove(ID id) {
         T item = this.get(id);
         HibernateUtil.beginTransaction();

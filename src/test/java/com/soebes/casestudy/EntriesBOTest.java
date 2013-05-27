@@ -1,7 +1,5 @@
 package com.soebes.casestudy;
 
-import static org.testng.Assert.assertEquals;
-
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -12,8 +10,8 @@ import com.soebes.casestudy.bo.EntriesBO;
 import com.soebes.casestudy.dao.DAOFactory;
 import com.soebes.casestudy.dao.IdDAO;
 
-public class BestellungBOTest extends BOTestBase {
-    private static Logger LOGGER = Logger.getLogger(BestellungBOTest.class);
+public class EntriesBOTest extends BOTestBase {
+    private static Logger LOGGER = Logger.getLogger(EntriesBOTest.class);
 
     @BeforeClass
     public void beforeClass() {
@@ -24,9 +22,11 @@ public class BestellungBOTest extends BOTestBase {
 
     @Test(enabled = true)
     public void testGet() {
-        IdDAO<EntriesBO> dao = DAOFactory.getBestellung();
+        IdDAO<EntriesBO> dao = DAOFactory.getEntries();
         List<EntriesBO> resultList = dao.get();
-        assertEquals(resultList.size(), 1);
+        for (EntriesBO entriesBO : resultList) {
+            LOGGER.info("Id:" + entriesBO.getId() + " time:" + entriesBO.getTimestamp() + " Title:" + entriesBO.getTitle());
+        }
         LOGGER.info("Entries:" + resultList.get(0).getId());
     }
 

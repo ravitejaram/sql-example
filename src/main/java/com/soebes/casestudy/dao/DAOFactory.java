@@ -1,6 +1,3 @@
-/**
- * (c) 2008, 2009 T-Mobile Deutschland GmbH
- */
 package com.soebes.casestudy.dao;
 
 import com.soebes.casestudy.bo.EntriesBO;
@@ -13,7 +10,7 @@ import com.soebes.casestudy.bo.EntriesBO;
  */
 public final class DAOFactory {
 
-    public static IdDAO<EntriesBO> getBestellung() {
+    public static IdDAO<EntriesBO> getEntries() {
         return new IdDAO<EntriesBO>(EntriesBO.class);
     }
 }
