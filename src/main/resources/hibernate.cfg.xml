@@ -11,6 +11,7 @@
     <property name="current_session_context_class">org.hibernate.context.ThreadLocalSessionContext</property>
     <property name="cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</property>
     <property name="hibernate.id.new_generator_mappings">true</property>
+    <property name="hibernate.connection.characterEncoding">utf8</property>
     <mapping class="com.soebes.casestudy.bo.EntriesBO" />
   </session-factory>
 </hibernate-configuration>

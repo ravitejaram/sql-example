@@ -42,6 +42,7 @@ public class HibernateConfig {
     }
 
     public void configure(AnnotationConfiguration cfg) {
+        cfg.setProperty("hibernate.connection.characterEncoding", "utf8");
         cfg.setProperty(CONNECTION_URL, bean.getUrl());
         cfg.setProperty(CONNECTION_PASSWORD, bean.getPassword());
         cfg.setProperty(CONNECTION_USERNAME, bean.getUsername());
