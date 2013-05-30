@@ -10,4 +10,5 @@ public final class TabellenNamen {
 
     public final static String ENTRIES = "blog_entries";
 
+    public final static String CATEGORY = "blog_category";
 }
