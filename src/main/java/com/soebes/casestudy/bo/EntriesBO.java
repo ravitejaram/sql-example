@@ -20,7 +20,7 @@ public class EntriesBO extends BaseBO {
 
     private Timestamp timestamp;
 
-    @ManyToMany(targetEntity = com.soebes.casestudy.bo.CategoryBO.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
     @JoinTable(name = TabellenNamen.ENTRY_CATEGORY, 
     	joinColumns = { @JoinColumn(name = "entryid") }, 
     	inverseJoinColumns = { @JoinColumn(name = "categoryid") }

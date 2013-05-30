@@ -40,7 +40,7 @@ public class CategoryBO extends AbstractBaseBO {
     @NotFound(action = NotFoundAction.IGNORE)
     private List<CategoryBO> subCategories;
 
-    @ManyToMany(mappedBy="categories", cascade = { CascadeType.ALL }, targetEntity = com.soebes.casestudy.bo.EntriesBO.class)
+    @ManyToMany(mappedBy="categories", cascade = { CascadeType.ALL })
     private List<EntriesBO> entries;
 
     public Long getId() {
@@ -78,6 +78,14 @@ public class CategoryBO extends AbstractBaseBO {
 
     public void setSubCategories(ArrayList<CategoryBO> subCategories) {
 	this.subCategories = subCategories;
+    }
+
+    public boolean hasEntries() {
+	if (getEntries() != null && (getEntries().size() > 0)) {
+	    return true;
+	} else {
+	    return false;
+	}
     }
 
     public boolean hasSubCategories() {
