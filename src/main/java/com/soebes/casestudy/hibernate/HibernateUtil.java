@@ -19,8 +19,8 @@ public class HibernateUtil {
         AnnotationConfiguration config = new AnnotationConfiguration();
 
         // Here we define all annotated classes.
-        config.addAnnotatedClass(EntriesBO.class);
         config.addAnnotatedClass(CategoryBO.class);
+        config.addAnnotatedClass(EntriesBO.class);
 
         HibernateConfig.getInstance().configure(config);
         config.setProperty("hibernate.current_session_context_class",

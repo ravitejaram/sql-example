@@ -25,9 +25,10 @@ public class EntriesBOTest extends BOTestBase {
         IdDAO<EntriesBO> dao = DAOFactory.getEntries();
         List<EntriesBO> resultList = dao.get();
         for (EntriesBO entriesBO : resultList) {
-            LOGGER.info("Id:" + entriesBO.getId() + " time:" + entriesBO.getTimestamp() + " Title:" + entriesBO.getTitle());
+            StringBuilder sb = new StringBuilder("Id:" + entriesBO.getId() + " time:" + entriesBO.getTimestamp() + " Title:" + entriesBO.getTitle());
+            sb.append(" Number of categories:" + entriesBO.getCategories().size());
+            LOGGER.info(sb.toString());
         }
-        LOGGER.info("Entries:" + resultList.get(0).getId());
     }
 
 
