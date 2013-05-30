@@ -2,7 +2,7 @@ package com.soebes.casestudy.dao;
 
 import java.util.List;
 
-import com.soebes.casestudy.bo.BaseBO;
+import com.soebes.casestudy.bo.AbstractBaseBO;
 
 /**
  * This class will define the interface for all operations which
@@ -13,7 +13,7 @@ import com.soebes.casestudy.bo.BaseBO;
  *
  * @param <T> The parameter type which is used.
  */
-public class IdDAO<T extends BaseBO> extends HibernateDAO<T, Long> {
+public class IdDAO<T extends AbstractBaseBO> extends HibernateDAO<T, Long> {
 
     public IdDAO(Class<T> c) {
         super(c);

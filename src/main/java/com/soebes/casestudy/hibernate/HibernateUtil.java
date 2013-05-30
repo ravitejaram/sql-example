@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 
+import com.soebes.casestudy.bo.CategoryBO;
 import com.soebes.casestudy.bo.EntriesBO;
 
 public class HibernateUtil {
@@ -19,6 +20,7 @@ public class HibernateUtil {
 
         // Here we define all annotated classes.
         config.addAnnotatedClass(EntriesBO.class);
+        config.addAnnotatedClass(CategoryBO.class);
 
         HibernateConfig.getInstance().configure(config);
         config.setProperty("hibernate.current_session_context_class",

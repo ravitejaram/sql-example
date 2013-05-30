@@ -12,15 +12,17 @@ import javax.persistence.MappedSuperclass;
  *
  */
 @MappedSuperclass
-public class BaseBO {
+public class BaseBO extends AbstractBaseBO {
     private Long Id;
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+    @Override
     public Long getId() {
         return Id;
     }
 
+    @Override
     public void setId(Long id) {
         Id = id;
     }

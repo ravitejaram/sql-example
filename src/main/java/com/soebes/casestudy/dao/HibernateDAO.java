@@ -2,13 +2,12 @@ package com.soebes.casestudy.dao;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Locale;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Example;
 
-import com.soebes.casestudy.bo.BaseBO;
+import com.soebes.casestudy.bo.AbstractBaseBO;
 import com.soebes.casestudy.hibernate.HibernateUtil;
 
 /**
@@ -18,12 +17,12 @@ import com.soebes.casestudy.hibernate.HibernateUtil;
  * @param <T> Parameter for the type
  * @param <ID> Paramer for the primary key of the class.
  */
-public class HibernateDAO<T extends BaseBO, ID extends Serializable>
+public class HibernateDAO<T extends AbstractBaseBO, ID extends Serializable>
     implements IGenericDAO<T, ID> {
 
     private static Logger LOGGER = Logger.getLogger(HibernateDAO.class);
 
-    private static Locale LOCALIZATION = Locale.GERMAN;
+//    private static Locale LOCALIZATION = Locale.GERMAN;
 
     private Class<T> persistentClass;
 

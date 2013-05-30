@@ -13,5 +13,6 @@
     <property name="hibernate.id.new_generator_mappings">true</property>
     <property name="hibernate.connection.characterEncoding">utf8</property>
     <mapping class="com.soebes.casestudy.bo.EntriesBO" />
+    <mapping class="com.soebes.casestudy.bo.CategoryBO" />
   </session-factory>
 </hibernate-configuration>
