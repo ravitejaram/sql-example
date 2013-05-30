@@ -64,6 +64,7 @@ public class HibernateDAO<T extends AbstractBaseBO, ID extends Serializable>
         Criteria crit = HibernateUtil
             .getSession()
             .createCriteria(persistentClass);
+        crit.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         crit.setFirstResult(startIndex);
         List<T> result = crit.list();
         LOGGER.debug("findAll(" + persistentClass.getSimpleName() + "):" + result.size());

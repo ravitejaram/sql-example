@@ -40,7 +40,6 @@ public class CategoryBO extends AbstractBaseBO {
     @NotFound(action = NotFoundAction.IGNORE)
     private List<CategoryBO> subCategories;
 
-//    @JoinTable(name = TabellenNamen.ENTRY_CATEGORY, joinColumns = { @JoinColumn(name = "entryid") }, inverseJoinColumns = { @JoinColumn(name = "categoryid") })
     @ManyToMany(mappedBy="categories", cascade = { CascadeType.ALL }, targetEntity = com.soebes.casestudy.bo.EntriesBO.class)
     private List<EntriesBO> entries;
 
