@@ -1,10 +1,12 @@
 package com.soebes.casestudy.bo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 @Entity
 @Table(name = TabellenNamen.CATEGORY)
@@ -27,10 +32,12 @@ public class CategoryBO extends AbstractBaseBO {
 
     @ManyToOne( cascade = { CascadeType.ALL } )
     @JoinColumn(name = "parentid")
+    @NotFound(action = NotFoundAction.IGNORE)
     private CategoryBO parent;
 
-    @OneToMany(mappedBy = "parent")
-    private ArrayList<CategoryBO> subCategories = new ArrayList<CategoryBO>();
+    @OneToMany(mappedBy = "parent", fetch = FetchType.EAGER)
+    @NotFound(action = NotFoundAction.IGNORE)
+    private List<CategoryBO> subCategories;
 
     public Long getId() {
 	return Id;
@@ -57,7 +64,7 @@ public class CategoryBO extends AbstractBaseBO {
 	this.parent = parent;
     }
 
-    public ArrayList<CategoryBO> getSubCategories() {
+    public List<CategoryBO> getSubCategories() {
 	return subCategories;
     }
 
@@ -65,4 +72,18 @@ public class CategoryBO extends AbstractBaseBO {
 	this.subCategories = subCategories;
     }
 
+    public boolean hasSubCategories() {
+	if (getSubCategories() != null && (getSubCategories().size() > 0)) {
+	    return true;
+	} else {
+	    return false;
+	}
+    }
+    public boolean hasParent() {
+	if (getParent() == null) {
+	    return false;
+	} else {
+	    return true;
+	}
+    }
 }

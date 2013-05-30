@@ -25,7 +25,16 @@ public class CategoryBOTest extends BOTestBase {
         IdDAO<CategoryBO> dao = DAOFactory.getCategory();
         List<CategoryBO> categories = dao.get();
         for (CategoryBO categoryBO : categories) {
-            LOGGER.info("Id:" + categoryBO.getId() + " category name:" + categoryBO.getCategoryName()  + " parent:" + categoryBO.getParent() );
+            if (categoryBO.hasSubCategories()) {
+        	StringBuilder sb = new StringBuilder("Id:" + categoryBO.getId() + " category name:" + categoryBO.getCategoryName());
+        	sb.append("\n");
+        	for (CategoryBO subCatName : categoryBO.getSubCategories()) {
+		    sb.append("    " + subCatName.getCategoryName() + "\n");
+		}
+        	LOGGER.info(sb.toString());
+            } else {
+        	LOGGER.info("Id:" + categoryBO.getId() + " category name:" + categoryBO.getCategoryName() );
+            }
         }
     }
 
