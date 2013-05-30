@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import com.google.common.base.Joiner;
 import com.soebes.casestudy.bo.EntriesBO;
 import com.soebes.casestudy.dao.DAOFactory;
 import com.soebes.casestudy.dao.IdDAO;
@@ -24,9 +25,12 @@ public class EntriesBOTest extends BOTestBase {
     public void testGet() {
         IdDAO<EntriesBO> dao = DAOFactory.getEntries();
         List<EntriesBO> resultList = dao.get();
+        LOGGER.info("Number of entries:" + resultList.size());
         for (EntriesBO entriesBO : resultList) {
             StringBuilder sb = new StringBuilder("Id:" + entriesBO.getId() + " time:" + entriesBO.getTimestamp() + " Title:" + entriesBO.getTitle());
-            sb.append(" Number of categories:" + entriesBO.getCategories().size());
+            sb.append(" Categories:" + Joiner.on(',').join(entriesBO.getCategories()));
+            
+            ;
             LOGGER.info(sb.toString());
         }
     }

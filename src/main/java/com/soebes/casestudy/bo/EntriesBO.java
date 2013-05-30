@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -26,7 +25,6 @@ public class EntriesBO extends BaseBO {
     	joinColumns = { @JoinColumn(name = "entryid") }, 
     	inverseJoinColumns = { @JoinColumn(name = "categoryid") }
     )
-    @ElementCollection
     private List<CategoryBO> categories;
 
     public String getTitle() {

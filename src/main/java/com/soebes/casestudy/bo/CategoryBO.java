@@ -5,14 +5,12 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -42,9 +40,8 @@ public class CategoryBO extends AbstractBaseBO {
     @NotFound(action = NotFoundAction.IGNORE)
     private List<CategoryBO> subCategories;
 
-    @ManyToMany(cascade = { CascadeType.ALL }, targetEntity = com.soebes.casestudy.bo.EntriesBO.class)
-    @ElementCollection
-    @JoinTable(name = TabellenNamen.ENTRY_CATEGORY, joinColumns = { @JoinColumn(name = "categoryid") }, inverseJoinColumns = { @JoinColumn(name = "entryid") })
+//    @JoinTable(name = TabellenNamen.ENTRY_CATEGORY, joinColumns = { @JoinColumn(name = "entryid") }, inverseJoinColumns = { @JoinColumn(name = "categoryid") })
+    @ManyToMany(mappedBy="categories", cascade = { CascadeType.ALL }, targetEntity = com.soebes.casestudy.bo.EntriesBO.class)
     private List<EntriesBO> entries;
 
     public Long getId() {
@@ -54,6 +51,10 @@ public class CategoryBO extends AbstractBaseBO {
     @Override
     public void setId(Long id) {
 	Id = id;
+    }
+
+    public String toString() {
+	return getCategoryName();
     }
 
     public String getCategoryName() {
