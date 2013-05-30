@@ -24,8 +24,8 @@ public class CategoryBOTest extends BOTestBase {
     public void testGet() {
         IdDAO<CategoryBO> dao = DAOFactory.getCategory();
         List<CategoryBO> categories = dao.get();
-        for (CategoryBO categroyBO : categories) {
-            LOGGER.info("Id:" + categroyBO.getId() + " category name:" + categroyBO.getCategoryName() + " parent: " + categroyBO.getParentId() );
+        for (CategoryBO categoryBO : categories) {
+            LOGGER.info("Id:" + categoryBO.getId() + " category name:" + categoryBO.getCategoryName()  + " parent:" + categoryBO.getParent() );
         }
     }
 
