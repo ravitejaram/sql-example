@@ -20,7 +20,7 @@ public class CategoryBOTest extends BOTestBase {
         LOGGER.debug("beforeClass(done)");
     }
 
-    @Test(enabled = true)
+    @Test
     public void testGet() {
         IdDAO<CategoryBO> dao = DAOFactory.getCategory();
         List<CategoryBO> categories = dao.get();
