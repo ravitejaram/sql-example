@@ -1,6 +1,5 @@
 package com.soebes.casestudy.bo;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -18,7 +17,7 @@ public class EntriesBO extends BaseBO {
 	private String title;
 	private String body;
 
-	private Timestamp timestamp;
+	private long timestamp;
 
 	@ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
 	@JoinTable(name = TabellenNamen.ENTRY_CATEGORY, joinColumns = { @JoinColumn(name = "entryid") }, inverseJoinColumns = { @JoinColumn(name = "categoryid") })
@@ -40,11 +39,11 @@ public class EntriesBO extends BaseBO {
 		this.body = body;
 	}
 
-	public Timestamp getTimestamp() {
+	public long getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(Timestamp timestamp) {
+	public void setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
 	}
 
