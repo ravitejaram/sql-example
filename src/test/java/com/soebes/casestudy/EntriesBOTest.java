@@ -12,28 +12,29 @@ import com.soebes.casestudy.dao.DAOFactory;
 import com.soebes.casestudy.dao.IdDAO;
 
 public class EntriesBOTest extends BOTestBase {
-    private static Logger LOGGER = Logger.getLogger(EntriesBOTest.class);
+	private static Logger LOGGER = Logger.getLogger(EntriesBOTest.class);
 
-    @BeforeClass
-    public void beforeClass() {
-        LOGGER.debug("beforeClass()");
+	@BeforeClass
+	public void beforeClass() {
+		LOGGER.debug("beforeClass()");
 
-        LOGGER.debug("beforeClass(done)");
-    }
+		LOGGER.debug("beforeClass(done)");
+	}
 
-    @Test(enabled = true)
-    public void testGet() {
-        IdDAO<EntriesBO> dao = DAOFactory.getEntries();
-        List<EntriesBO> resultList = dao.get();
-        LOGGER.info("Number of entries:" + resultList.size());
-        for (EntriesBO entriesBO : resultList) {
-            StringBuilder sb = new StringBuilder("Id:" + entriesBO.getId() + " time:" + entriesBO.getTimestamp() + " Title:" + entriesBO.getTitle());
-            sb.append(" Categories:" + Joiner.on(',').join(entriesBO.getCategories()));
-            
-            ;
-            LOGGER.info(sb.toString());
-        }
-    }
+	@Test(enabled = true)
+	public void testGet() {
+		IdDAO<EntriesBO> dao = DAOFactory.getEntries();
+		List<EntriesBO> resultList = dao.get();
+		LOGGER.info("Number of entries:" + resultList.size());
+		for (EntriesBO entriesBO : resultList) {
+			StringBuilder sb = new StringBuilder("Id:" + entriesBO.getId()
+					+ " time:" + entriesBO.getTimestamp() + " Title:"
+					+ entriesBO.getTitle());
+			sb.append(" Categories:"
+					+ Joiner.on(',').join(entriesBO.getCategories()));
 
+			LOGGER.info(sb.toString());
+		}
+	}
 
 }
