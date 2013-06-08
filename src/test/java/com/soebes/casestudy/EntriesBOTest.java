@@ -42,5 +42,9 @@ public class EntriesBOTest extends BOTestBase {
             LOGGER.info(sb.toString());
         }
     }
+    
+    private void writePosts(List<EntriesBO> listOfEntries) {
+        
+    }
 
 }
