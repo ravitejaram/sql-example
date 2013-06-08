@@ -8,7 +8,10 @@ import java.util.TimeZone;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Root;
 
 import org.apache.log4j.Logger;
 import org.testng.annotations.BeforeClass;
@@ -48,10 +51,14 @@ public class EntriesBOTest extends BOTestBase {
 
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
-    @Test(enabled = true)
+    @Test
     public void testGet() {
-        CriteriaQuery<EntriesBO> criteria = em.getCriteriaBuilder().createQuery(EntriesBO.class);
-        criteria.from(EntriesBO.class);
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<EntriesBO> criteria = criteriaBuilder.createQuery(EntriesBO.class);
+        Root<EntriesBO> from = criteria.from(EntriesBO.class);
+
+        criteria.where( criteriaBuilder.equal(from.get("isDraft"), String.valueOf("false")));
+        
         List<EntriesBO> resultList = em.createQuery(criteria).getResultList();
         
         LOGGER.info("Number of entries:" + resultList.size());

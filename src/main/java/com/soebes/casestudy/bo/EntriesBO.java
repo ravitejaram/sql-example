@@ -3,6 +3,7 @@ package com.soebes.casestudy.bo;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -19,7 +20,8 @@ public class EntriesBO extends BaseBO {
 
     private long timestamp;
 
-    private Boolean isDraft;
+    @Column(columnDefinition="enum('true','false'")
+    private String isDraft;
 
     @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
     @JoinTable(name = TabellenNamen.ENTRY_CATEGORY, joinColumns = { @JoinColumn(name = "entryid") }, inverseJoinColumns = { @JoinColumn(name = "categoryid") })
@@ -57,11 +59,11 @@ public class EntriesBO extends BaseBO {
         this.categories = categories;
     }
 
-    public Boolean getIsDraft() {
+    public String getIsDraft() {
         return isDraft;
     }
 
-    public void setIsDraft(Boolean isDraft) {
+    public void setIsDraft(String isDraft) {
         this.isDraft = isDraft;
     }
 
