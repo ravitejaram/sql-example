@@ -19,19 +19,18 @@ public class CreatePostFromEntry {
     public String createFileName() {
         Calendar cal = Calendar.getInstance(TimeZone.getDefault());
         cal.setTimeInMillis(getEntry().getTimestamp() * 1000);
-        String result = DATE_FORMAT.format(cal.getTime());
+        String result = DATE_FORMAT.format(cal.getTime()) + "-" + convertTitleToFileName(getEntry().getTitle() + ".md");
         return result;
     }
 
-    public String convertTitleToFileName(String title) {
+    private String convertTitleToFileName(String title) {
         String result = title.replaceAll("[:/&%$§\"!()?]", "");
-        result = result.replaceAll("[ ]+", " ");
-        result = result.replaceAll("[ ]", "-");
+        result = result.replaceAll("[ ]+", "-");
         result = result.replaceAll("ö", "oe");
         result = result.replaceAll("ä", "ae");
         result = result.replaceAll("ü", "ue");
         result = result.replaceAll("ß", "ss");
-        
+
         result = result.toLowerCase();
         return result;
     }
@@ -39,9 +38,9 @@ public class CreatePostFromEntry {
     public EntriesBO getEntry() {
         return entry;
     }
-    
+
     public void setEntry(EntriesBO entry) {
         this.entry = entry;
     }
-    
+
 }
