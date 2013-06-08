@@ -11,35 +11,33 @@ import com.soebes.casestudy.dao.DAOFactory;
 import com.soebes.casestudy.dao.IdDAO;
 
 public class CategoryBOTest extends BOTestBase {
-	private static Logger LOGGER = Logger.getLogger(CategoryBOTest.class);
+    private static Logger LOGGER = Logger.getLogger(CategoryBOTest.class);
 
-	@BeforeClass
-	public void beforeClass() {
-		LOGGER.debug("beforeClass()");
+    @BeforeClass
+    public void beforeClass() {
+        LOGGER.debug("beforeClass()");
 
-		LOGGER.debug("beforeClass(done)");
-	}
+        LOGGER.debug("beforeClass(done)");
+    }
 
-	@Test
-	public void testGet() {
-		IdDAO<CategoryBO> dao = DAOFactory.getCategory();
-		List<CategoryBO> categories = dao.get();
-		LOGGER.info("Number of entries:" + categories.size());
+    @Test
+    public void testGet() {
+        IdDAO<CategoryBO> dao = DAOFactory.getCategory();
+        List<CategoryBO> categories = dao.get();
+        LOGGER.info("Number of entries:" + categories.size());
 
-		for (CategoryBO categoryBO : categories) {
-			if (categoryBO.hasSubCategories()) {
-				StringBuilder sb = new StringBuilder("Id:" + categoryBO.getId()
-						+ " category name:" + categoryBO.getCategoryName());
-				sb.append("\n");
-				for (CategoryBO subCatName : categoryBO.getSubCategories()) {
-					sb.append("    " + subCatName.getCategoryName() + "\n");
-				}
-				LOGGER.info(sb.toString());
-			} else {
-				LOGGER.info("Id:" + categoryBO.getId() + " category name:"
-						+ categoryBO.getCategoryName());
-			}
-		}
-	}
+        for (CategoryBO categoryBO : categories) {
+            if (categoryBO.hasSubCategories()) {
+                StringBuilder sb = new StringBuilder("Id:" + categoryBO.getId() + " category name:" + categoryBO.getCategoryName());
+                sb.append("\n");
+                for (CategoryBO subCatName : categoryBO.getSubCategories()) {
+                    sb.append("    " + subCatName.getCategoryName() + "\n");
+                }
+                LOGGER.info(sb.toString());
+            } else {
+                LOGGER.info("Id:" + categoryBO.getId() + " category name:" + categoryBO.getCategoryName());
+            }
+        }
+    }
 
 }

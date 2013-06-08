@@ -14,18 +14,18 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public class BaseBO extends AbstractBaseBO {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long Id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long Id;
 
-	@Override
-	public Long getId() {
-		return Id;
-	}
+    @Override
+    public Long getId() {
+        return Id;
+    }
 
-	@Override
-	public void setId(Long id) {
-		Id = id;
-	}
+    @Override
+    public void setId(Long id) {
+        Id = id;
+    }
 
 }

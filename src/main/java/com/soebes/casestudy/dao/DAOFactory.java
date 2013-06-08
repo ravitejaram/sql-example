@@ -11,11 +11,11 @@ import com.soebes.casestudy.bo.EntriesBO;
  */
 public final class DAOFactory {
 
-	public static IdDAO<EntriesBO> getEntries() {
-		return new IdDAO<EntriesBO>(EntriesBO.class);
-	}
+    public static IdDAO<EntriesBO> getEntries() {
+        return new IdDAO<EntriesBO>(EntriesBO.class);
+    }
 
-	public static IdDAO<CategoryBO> getCategory() {
-		return new IdDAO<CategoryBO>(CategoryBO.class);
-	}
+    public static IdDAO<CategoryBO> getCategory() {
+        return new IdDAO<CategoryBO>(CategoryBO.class);
+    }
 }

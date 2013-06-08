@@ -15,33 +15,32 @@ import com.soebes.casestudy.dao.DAOFactory;
 import com.soebes.casestudy.dao.IdDAO;
 
 public class EntriesBOTest extends BOTestBase {
-	private static Logger LOGGER = Logger.getLogger(EntriesBOTest.class);
+    private static Logger LOGGER = Logger.getLogger(EntriesBOTest.class);
 
-	@BeforeClass
-	public void beforeClass() {
-		LOGGER.debug("beforeClass()");
+    @BeforeClass
+    public void beforeClass() {
+        LOGGER.debug("beforeClass()");
 
-		LOGGER.debug("beforeClass(done)");
-	}
+        LOGGER.debug("beforeClass(done)");
+    }
 
-	private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
-	@Test(enabled = true)
-	public void testGet() {
-		IdDAO<EntriesBO> dao = DAOFactory.getEntries();
-		List<EntriesBO> resultList = dao.get();
-		LOGGER.info("Number of entries:" + resultList.size());
-		for (EntriesBO entriesBO : resultList) {
-			Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT-2:00"));
-			cal.setTimeInMillis(entriesBO.getTimestamp() * 1000);
-			StringBuilder sb = new StringBuilder("Id:" + entriesBO.getId()
-					+ " time:" + DATE_FORMAT.format(cal.getTime()) + "(" + entriesBO.getTimestamp() + ") "
-					+ " Title:" + entriesBO.getTitle());
-			sb.append(" Categories:"
-					+ Joiner.on(',').join(entriesBO.getCategories()));
+    @Test(enabled = true)
+    public void testGet() {
+        IdDAO<EntriesBO> dao = DAOFactory.getEntries();
+        List<EntriesBO> resultList = dao.get();
+        LOGGER.info("Number of entries:" + resultList.size());
+        for (EntriesBO entriesBO : resultList) {
+            Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT-2:00"));
+            cal.setTimeInMillis(entriesBO.getTimestamp() * 1000);
 
-			LOGGER.info(sb.toString());
-		}
-	}
+            StringBuilder sb = new StringBuilder("Id:" + entriesBO.getId() + " draft: " + entriesBO.getIsDraft() + " time:"
+                    + DATE_FORMAT.format(cal.getTime()) + "(" + entriesBO.getTimestamp() + ") " + " Title:" + entriesBO.getTitle());
+            sb.append(" Categories:" + Joiner.on(',').join(entriesBO.getCategories()));
+
+            LOGGER.info(sb.toString());
+        }
+    }
 
 }

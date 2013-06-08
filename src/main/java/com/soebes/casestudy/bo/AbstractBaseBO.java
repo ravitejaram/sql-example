@@ -8,7 +8,7 @@ package com.soebes.casestudy.bo;
  */
 
 public abstract class AbstractBaseBO {
-	public abstract Long getId();
+    public abstract Long getId();
 
-	public abstract void setId(Long id);
+    public abstract void setId(Long id);
 }

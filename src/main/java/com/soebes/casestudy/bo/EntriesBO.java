@@ -14,45 +14,55 @@ import javax.persistence.Table;
 @Table(name = TabellenNamen.ENTRIES)
 public class EntriesBO extends BaseBO {
 
-	private String title;
-	private String body;
+    private String title;
+    private String body;
 
-	private long timestamp;
+    private long timestamp;
 
-	@ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-	@JoinTable(name = TabellenNamen.ENTRY_CATEGORY, joinColumns = { @JoinColumn(name = "entryid") }, inverseJoinColumns = { @JoinColumn(name = "categoryid") })
-	private List<CategoryBO> categories;
+    private Boolean isDraft;
 
-	public String getTitle() {
-		return title;
-	}
+    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @JoinTable(name = TabellenNamen.ENTRY_CATEGORY, joinColumns = { @JoinColumn(name = "entryid") }, inverseJoinColumns = { @JoinColumn(name = "categoryid") })
+    private List<CategoryBO> categories;
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public String getBody() {
-		return body;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public void setBody(String body) {
-		this.body = body;
-	}
+    public String getBody() {
+        return body;
+    }
 
-	public long getTimestamp() {
-		return timestamp;
-	}
+    public void setBody(String body) {
+        this.body = body;
+    }
 
-	public void setTimestamp(long timestamp) {
-		this.timestamp = timestamp;
-	}
+    public long getTimestamp() {
+        return timestamp;
+    }
 
-	public List<CategoryBO> getCategories() {
-		return categories;
-	}
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
 
-	public void setCategories(List<CategoryBO> categories) {
-		this.categories = categories;
-	}
+    public List<CategoryBO> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<CategoryBO> categories) {
+        this.categories = categories;
+    }
+
+    public Boolean getIsDraft() {
+        return isDraft;
+    }
+
+    public void setIsDraft(Boolean isDraft) {
+        this.isDraft = isDraft;
+    }
 
 }
