@@ -24,12 +24,14 @@ public class CreatePostFromEntry {
     }
 
     public String convertTitleToFileName(String title) {
-        String result = title.replaceAll("[ ]+", " ");
+        String result = title.replaceAll("[:/&%$§\"!()?]", "");
+        result = result.replaceAll("[ ]+", " ");
         result = result.replaceAll("[ ]", "-");
         result = result.replaceAll("ö", "oe");
         result = result.replaceAll("ä", "ae");
         result = result.replaceAll("ü", "ue");
         result = result.replaceAll("ß", "ss");
+        
         result = result.toLowerCase();
         return result;
     }

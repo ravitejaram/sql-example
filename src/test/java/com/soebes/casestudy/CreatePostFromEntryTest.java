@@ -43,7 +43,7 @@ public class CreatePostFromEntryTest extends BOTestBase {
         String result = cpfe.convertTitleToFileName("this   is the     best    thing");
         assertThat(result).isEqualTo("this-is-the-best-thing");
     }
-    
+
     @Test
     public void shouldReturnCorrectFileNameFromTitle() {
         CreatePostFromEntry cpfe = new CreatePostFromEntry(entry);
@@ -56,5 +56,12 @@ public class CreatePostFromEntryTest extends BOTestBase {
         CreatePostFromEntry cpfe = new CreatePostFromEntry(entry);
         String result = cpfe.convertTitleToFileName("Das ist ö ä ü ß");
         assertThat(result).isEqualTo("das-ist-oe-ae-ue-ss");
+    }
+
+    @Test
+    public void shouldReturnConvertedSpecialCharactersFromTitle() {
+        CreatePostFromEntry cpfe = new CreatePostFromEntry(entry);
+        String result = cpfe.convertTitleToFileName("Das-ist: noch mehr als man denkt? hier !$%&/() noch mehr");
+        assertThat(result).isEqualTo("das-ist-noch-mehr-als-man-denkt-hier-noch-mehr");
     }
 }
