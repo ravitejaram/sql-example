@@ -18,7 +18,7 @@ import com.soebes.casestudy.bo.EntriesBO;
 public class EntriesBOTest extends BOTestBase {
     private static Logger LOGGER = Logger.getLogger(EntriesBOTest.class);
 
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z");
 
     @Test
     public void testGet() {
@@ -32,7 +32,7 @@ public class EntriesBOTest extends BOTestBase {
         
         LOGGER.info("Number of entries:" + resultList.size());
         for (EntriesBO entriesBO : resultList) {
-            Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT-2:00"));
+            Calendar cal = Calendar.getInstance(TimeZone.getDefault());
             cal.setTimeInMillis(entriesBO.getTimestamp() * 1000);
 
             StringBuilder sb = new StringBuilder("Id:" + entriesBO.getId() + " draft: " + entriesBO.getIsDraft() + " time:"
