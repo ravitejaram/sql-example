@@ -43,8 +43,4 @@ public class EntriesBOTest extends BOTestBase {
         }
     }
     
-    private void writePosts(List<EntriesBO> listOfEntries) {
-        
-    }
-
 }

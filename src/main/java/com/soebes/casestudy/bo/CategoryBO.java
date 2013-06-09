@@ -43,6 +43,20 @@ public class CategoryBO extends AbstractBaseBO {
     @ManyToMany(mappedBy = "categories", cascade = { CascadeType.ALL })
     private List<EntriesBO> entries;
 
+    public CategoryBO() {
+    }
+
+    
+    public CategoryBO(String categoryName) {
+        super();
+        this.Id = Long.valueOf(0);
+        this.parent = null;
+        this.subCategories = new ArrayList<CategoryBO>();
+        this.entries = new ArrayList<EntriesBO>();
+        this.categoryName = categoryName;
+    }
+
+
     public Long getId() {
         return Id;
     }

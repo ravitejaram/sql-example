@@ -1,14 +1,17 @@
 package com.soebes.casestudy;
 
-
 import static org.fest.assertions.Assertions.assertThat;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.TimeZone;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import com.google.common.base.Joiner;
+import com.google.common.collect.Lists;
+import com.soebes.casestudy.bo.CategoryBO;
 import com.soebes.casestudy.bo.EntriesBO;
 
 public class CreatePostFromEntryTest extends BOTestBase {
@@ -21,7 +24,7 @@ public class CreatePostFromEntryTest extends BOTestBase {
         entry.setBody("This is a Test Message");
         entry.setId(Long.valueOf(1L));
         entry.setIsDraft("false");
-        
+
         Calendar cal = Calendar.getInstance(TimeZone.getDefault());
         cal.set(Calendar.YEAR, 2013);
         cal.set(Calendar.MONTH, 3);
@@ -32,6 +35,9 @@ public class CreatePostFromEntryTest extends BOTestBase {
 
         entry.setTimestamp(cal.getTimeInMillis() / 1000L);
         entry.setTitle("This is the Title");
+
+        List<CategoryBO> categories = Lists.newArrayList(new CategoryBO("Category1"), new CategoryBO("Category2"));
+        entry.setCategories(categories);
     }
 
     private String createPostFileNameFromEntryTitle(String title) {
@@ -40,7 +46,13 @@ public class CreatePostFromEntryTest extends BOTestBase {
         String fileName = cpfe.createFileName();
         return fileName;
     }
-    
+
+    private StringBuilder createPostYAMLHeaderFromTitle(String title) {
+        entry.setTitle(title);
+        CreatePostFromEntry cpfe = new CreatePostFromEntry(entry);
+        return cpfe.createYAMLHeader();
+    }
+
     @Test
     public void shouldReturnConvertedFileNameFromTitle() {
         String fileName = createPostFileNameFromEntryTitle("This   is a file name");
@@ -69,5 +81,25 @@ public class CreatePostFromEntryTest extends BOTestBase {
     public void shouldReturnConvertedSpecialCharactersFromTitle() {
         String result = createPostFileNameFromEntryTitle("Das-ist: noch mehr als man denkt? hier !$%&/() noch mehr");
         assertThat(result).isEqualTo("2013-04-12-das-ist-noch-mehr-als-man-denkt-hier-noch-mehr.md");
+    }
+
+    @Test
+    public void shouldReturnYAMLHeaderFromTitle() {
+        StringBuilder sb = createPostYAMLHeaderFromTitle("This is the title");
+        //@formatter:off
+        assertThat(sb.toString()).isEqualTo(
+          Joiner.on("\n").join(
+            "---", 
+            "layout: post",
+            "title: \"This is the title\"",
+            "date: 2013-04-12 15:34:12",
+            "tags: Category1,Category2",
+            "categories: Category1,Category2",
+            "post-type: blog",
+            "---",
+            ""
+          )
+        );
+        //@formatter:on
     }
 }
