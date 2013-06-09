@@ -34,43 +34,40 @@ public class CreatePostFromEntryTest extends BOTestBase {
         entry.setTitle("This is the Title");
     }
 
-    @Test
-    public void shouldReturnConvertedFileNameFromTitle() {
-        entry.setTitle("This   is a file name");
+    private String createPostFileNameFromEntryTitle(String title) {
+        entry.setTitle(title);
         CreatePostFromEntry cpfe = new CreatePostFromEntry(entry);
         String fileName = cpfe.createFileName();
+        return fileName;
+    }
+    
+    @Test
+    public void shouldReturnConvertedFileNameFromTitle() {
+        String fileName = createPostFileNameFromEntryTitle("This   is a file name");
         assertThat(fileName).isEqualTo("2013-04-12-this-is-a-file-name.md");
     }
 
     @Test
     public void shouldReturnSingleDashDelimitedFileName() {
-        entry.setTitle("this   is the     best    thing");
-        CreatePostFromEntry cpfe = new CreatePostFromEntry(entry);
-        String result = cpfe.createFileName();
+        String result = createPostFileNameFromEntryTitle("this   is the     best    thing");
         assertThat(result).isEqualTo("2013-04-12-this-is-the-best-thing.md");
     }
 
     @Test
     public void shouldReturnCorrectFileNameFromTitle() {
-        entry.setTitle("This is the best");
-        CreatePostFromEntry cpfe = new CreatePostFromEntry(entry);
-        String result = cpfe.createFileName();
+        String result = createPostFileNameFromEntryTitle("This is the best");
         assertThat(result).isEqualTo("2013-04-12-this-is-the-best.md");
     }
 
     @Test
     public void shouldReturnConvertedUmlautFromTitle() {
-        entry.setTitle("Das ist ö ä ü ß");
-        CreatePostFromEntry cpfe = new CreatePostFromEntry(entry);
-        String result = cpfe.createFileName();
+        String result = createPostFileNameFromEntryTitle("Das ist ö ä ü ß");
         assertThat(result).isEqualTo("2013-04-12-das-ist-oe-ae-ue-ss.md");
     }
 
     @Test
     public void shouldReturnConvertedSpecialCharactersFromTitle() {
-        entry.setTitle("Das-ist: noch mehr als man denkt? hier !$%&/() noch mehr");
-        CreatePostFromEntry cpfe = new CreatePostFromEntry(entry);
-        String result = cpfe.createFileName();
+        String result = createPostFileNameFromEntryTitle("Das-ist: noch mehr als man denkt? hier !$%&/() noch mehr");
         assertThat(result).isEqualTo("2013-04-12-das-ist-noch-mehr-als-man-denkt-hier-noch-mehr.md");
     }
 }
