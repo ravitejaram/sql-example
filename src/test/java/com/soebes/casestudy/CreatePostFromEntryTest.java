@@ -2,6 +2,8 @@ package com.soebes.casestudy;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
@@ -12,15 +14,15 @@ import org.testng.annotations.Test;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.soebes.casestudy.bo.CategoryBO;
-import com.soebes.casestudy.bo.EntriesBO;
+import com.soebes.casestudy.bo.EntryBO;
 
 public class CreatePostFromEntryTest extends BOTestBase {
 
-    private EntriesBO entry;
+    private EntryBO entry;
 
     @BeforeClass
     public void beforeClass() {
-        entry = new EntriesBO();
+        entry = new EntryBO();
         entry.setBody("This is a Test Message");
         entry.setId(Long.valueOf(1L));
         entry.setIsDraft("false");
@@ -101,5 +103,12 @@ public class CreatePostFromEntryTest extends BOTestBase {
           )
         );
         //@formatter:on
+    }
+
+    @Test
+    public void shouldCreateYAMLFileForPost() throws IOException {
+        entry.setTitle("This is the first title");
+        CreatePostFromEntry cpfe = new CreatePostFromEntry(entry);
+        cpfe.writeYAMLFile(new File("target"));
     }
 }

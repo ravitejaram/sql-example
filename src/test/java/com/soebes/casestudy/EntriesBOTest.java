@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
 import org.testng.annotations.Test;
 
 import com.google.common.base.Joiner;
-import com.soebes.casestudy.bo.EntriesBO;
+import com.soebes.casestudy.bo.EntryBO;
 
 public class EntriesBOTest extends BOTestBase {
     private static Logger LOGGER = Logger.getLogger(EntriesBOTest.class);
@@ -23,15 +23,15 @@ public class EntriesBOTest extends BOTestBase {
     @Test
     public void testGet() {
         CriteriaBuilder criteriaBuilder = getEm().getCriteriaBuilder();
-        CriteriaQuery<EntriesBO> criteria = criteriaBuilder.createQuery(EntriesBO.class);
-        Root<EntriesBO> from = criteria.from(EntriesBO.class);
+        CriteriaQuery<EntryBO> criteria = criteriaBuilder.createQuery(EntryBO.class);
+        Root<EntryBO> from = criteria.from(EntryBO.class);
 
         criteria.where( criteriaBuilder.equal(from.get("isDraft"), String.valueOf("false")));
         
-        List<EntriesBO> resultList = getEm().createQuery(criteria).getResultList();
+        List<EntryBO> resultList = getEm().createQuery(criteria).getResultList();
         
         LOGGER.info("Number of entries:" + resultList.size());
-        for (EntriesBO entriesBO : resultList) {
+        for (EntryBO entriesBO : resultList) {
             Calendar cal = Calendar.getInstance(TimeZone.getDefault());
             cal.setTimeInMillis(entriesBO.getTimestamp() * 1000);
 

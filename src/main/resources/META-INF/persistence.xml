@@ -9,7 +9,7 @@
   <persistence-unit
     name="hibernate-search-example"
     transaction-type="RESOURCE_LOCAL">
-    <class>com.soebes.casestudy.bo.EntriesBO</class>
+    <class>com.soebes.casestudy.bo.EntryBO</class>
     <class>com.soebes.casestudy.bo.CategoryBO</class>
     <properties>
 

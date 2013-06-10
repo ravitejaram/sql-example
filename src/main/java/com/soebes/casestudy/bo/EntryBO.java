@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = TabellenNamen.ENTRIES)
-public class EntriesBO extends BaseBO {
+public class EntryBO extends BaseBO {
 
     private String title;
     private String body;

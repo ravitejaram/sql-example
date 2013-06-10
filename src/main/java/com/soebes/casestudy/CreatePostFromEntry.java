@@ -1,19 +1,22 @@
 package com.soebes.casestudy;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.TimeZone;
 
 import com.google.common.base.Joiner;
-import com.soebes.casestudy.bo.EntriesBO;
+import com.soebes.casestudy.bo.EntryBO;
 
 public class CreatePostFromEntry {
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     public static final SimpleDateFormat DATE_FORMAT_YAML = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    private EntriesBO entry;
+    private EntryBO entry;
 
-    public CreatePostFromEntry(EntriesBO entry) {
+    public CreatePostFromEntry(EntryBO entry) {
         this.entry = entry;
     }
 
@@ -58,11 +61,22 @@ public class CreatePostFromEntry {
         return result;
     }
 
-    public EntriesBO getEntry() {
+    public void writeYAMLFile(File path) throws IOException {
+        StringBuilder createYAMLHeader = createYAMLHeader();
+
+        File yamlFile = new File(path, createFileName());
+
+        FileWriter fw = new FileWriter(yamlFile);
+        fw.write(createYAMLHeader.toString());
+
+        fw.close();
+    }
+
+    public EntryBO getEntry() {
         return entry;
     }
 
-    public void setEntry(EntriesBO entry) {
+    public void setEntry(EntryBO entry) {
         this.entry = entry;
     }
 
