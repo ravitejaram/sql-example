@@ -86,6 +86,18 @@ public class CreatePostFromEntryTest extends BOTestBase {
     }
 
     @Test
+    public void shouldReturnConvertedTitle() {
+        String result = createPostFileNameFromEntryTitle("Automatic Revision Control System 0.5.0 (Default) - 11.03.2007");
+        assertThat(result).isEqualTo("2013-04-12-automatic-revision-control-system-0-5-0-default-11-03-2007.md");
+    }
+
+    @Test
+    public void shouldReturnXXXTitle() {
+        String result = createPostFileNameFromEntryTitle("Automatic Revision Control System 0.5.0 11.03.2007");
+        assertThat(result).isEqualTo("2013-04-12-automatic-revision-control-system-0-5-0-11-03-2007.md");
+    }
+    
+    @Test
     public void shouldReturnYAMLHeaderFromTitle() {
         StringBuilder sb = createPostYAMLHeaderFromTitle("This is the title");
         //@formatter:off
@@ -111,4 +123,5 @@ public class CreatePostFromEntryTest extends BOTestBase {
         CreatePostFromEntry cpfe = new CreatePostFromEntry(entry);
         cpfe.writeYAMLFile(new File("target"));
     }
+
 }

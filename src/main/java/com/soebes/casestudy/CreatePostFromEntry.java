@@ -29,6 +29,7 @@ public class CreatePostFromEntry {
 
     private String convertTitleToFileName(String title) {
         String result = title.replaceAll("[:/&%$§\"!()?]", "");
+        result = result.replaceAll("[\\.]", " ");
         result = result.replaceAll("[ ]+", "-");
         result = result.replaceAll("ö", "oe");
         result = result.replaceAll("ä", "ae");
