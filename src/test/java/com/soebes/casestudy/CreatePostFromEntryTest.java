@@ -16,7 +16,7 @@ import com.google.common.collect.Lists;
 import com.soebes.casestudy.bo.CategoryBO;
 import com.soebes.casestudy.bo.EntryBO;
 
-public class CreatePostFromEntryTest extends BOTestBase {
+public class CreatePostFromEntryTest extends TestBase {
 
     private EntryBO entry;
 
@@ -92,11 +92,24 @@ public class CreatePostFromEntryTest extends BOTestBase {
     }
 
     @Test
-    public void shouldReturnXXXTitle() {
+    public void shouldReturnConvertedFileNameFromEntryTitle() {
         String result = createPostFileNameFromEntryTitle("Automatic Revision Control System 0.5.0 11.03.2007");
         assertThat(result).isEqualTo("2013-04-12-automatic-revision-control-system-0-5-0-11-03-2007.md");
     }
     
+    @Test
+    public void shouldReturnConvertedFileNameFromEntryTitleWithComma() {
+        String result = createPostFileNameFromEntryTitle("2. Subversion Conference 2008 / 1. Change, Configuration und Version Management Konferenz");
+        assertThat(result).isEqualTo("2013-04-12-2-subversion-conference-2008-1-change-configuration-und-version-management-konferenz.md");
+    }
+
+    @Test
+    public void shouldReturnConvertedFileNameFromEntityTitleWithPlus() {
+        
+        String result = createPostFileNameFromEntryTitle("Maven 2 + Hibernate3 PlugIn");
+        assertThat(result).isEqualTo("2013-04-12-maven-2-hibernate3-plugin.md");
+        
+    }
     @Test
     public void shouldReturnYAMLHeaderFromTitle() {
         StringBuilder sb = createPostYAMLHeaderFromTitle("This is the title");
@@ -117,11 +130,23 @@ public class CreatePostFromEntryTest extends BOTestBase {
         //@formatter:on
     }
 
+    private static final String FILENAME_2013_04_12_THIS_IS_THE_FIRST_TITLE_MD = "2013-04-12-this-is-the-first-title.md";
+    private static final File TARGET_FOLDER = new File("target");
+
     @Test
     public void shouldCreateYAMLFileForPost() throws IOException {
+
+        //Given
         entry.setTitle("This is the first title");
         CreatePostFromEntry cpfe = new CreatePostFromEntry(entry);
-        cpfe.writeYAMLFile(new File("target"));
+        
+        //When
+        cpfe.writeYAMLFile(TARGET_FOLDER);
+
+        //Then
+        File expected = new File(getTestResourceDirectoryFile(), FILENAME_2013_04_12_THIS_IS_THE_FIRST_TITLE_MD);
+        File createdFile = new File(TARGET_FOLDER, FILENAME_2013_04_12_THIS_IS_THE_FIRST_TITLE_MD); 
+        assertThat(createdFile).isFile().exists().hasSameContentAs(expected);
     }
 
 }

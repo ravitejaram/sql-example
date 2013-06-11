@@ -30,7 +30,15 @@
         value="${database.url}" />
 
       <!-- <property name="hibernate.hbm2ddl.auto" value="create-drop"/> -->
-
+      <property
+        name="hibernate.connection.useUnicode"
+        value="true" />
+      <property
+        name="hibernate.connection.characterEncoding"
+        value="UTF-8" />
+      <property
+        name="hibernate.connection.charSet"
+        value="UTF-8" />
       <!-- optional -->
       <!-- <property name="hibernate.search.default.directory_provider" value="filesystem"/> -->
     </properties>
