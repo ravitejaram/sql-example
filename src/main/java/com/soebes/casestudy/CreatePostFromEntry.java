@@ -36,9 +36,17 @@ public class CreatePostFromEntry {
         result = result.replaceAll("ä", "ae");
         result = result.replaceAll("ü", "ue");
         result = result.replaceAll("ß", "ss");
+        result = result.replaceAll("ã¼", "ue");
         result = result.replaceAll("&#223;", "ss");
 
         result = result.toLowerCase();
+        return result;
+    }
+
+    public StringBuilder createBodyText() {
+        StringBuilder result = new StringBuilder();
+
+        result.append(getEntry().getBody());
         return result;
     }
 
@@ -66,6 +74,7 @@ public class CreatePostFromEntry {
 
     public void writeYAMLFile(File path) throws IOException {
         StringBuilder createYAMLHeader = createYAMLHeader();
+        createYAMLHeader.append(createBodyText());
 
         File yamlFile = new File(path, createFileName());
 
