@@ -30,10 +30,10 @@
     <database.root.user>root</database.root.user>
     <database.root.password></database.root.password>
 
-    <database.user>blog</database.user>
-    <database.password>blog</database.password>
+    <database.user>root</database.user>
+    <database.password></database.password>
 
-    <database.database>blog</database.database>
+    <database.database>maven</database.database>
   </properties>
 
   <scm>
